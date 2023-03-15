@@ -1,0 +1,190 @@
+ // DARK MOD // 
+    const calculator = document.querySelector('.cal-body');
+    const toggle_dark = document.querySelector('.slider');
+    const main = document.querySelector('.main')
+    const bodyy = document.body;
+    const cal = document.querySelector('.calculator');
+    const ekran = document.querySelector('.input-value');
+    const butons = document.querySelectorAll('.btn');
+    const loading_page = document.querySelector('.loading-page');
+    const loading = document.querySelector('.loading')
+
+    toggle_dark.addEventListener('click', () => {
+
+
+      bodyy.classList.toggle('body-dark');
+      cal.classList.toggle('dark-mod-cal');
+      ekran.classList.toggle('input-value-dark');
+      butons.forEach(butons => butons.classList.toggle('btn-dark'));
+      main.style.display = 'none'
+      loading.style.display = 'block'
+      loading_page.classList.toggle('loading-page-dark')
+      setTimeout(() => {
+        loading.style.display = 'none'
+        main.style.display = 'block'
+      }, 2000)
+    });
+
+    //temayi degistir//
+    const change = document.querySelector('.change-btn');
+    const cal_result = document.querySelector('.cal-result');
+    const operators = document.querySelectorAll('.operator-bg');
+    const equal = document.querySelector('.equal');
+    const dlt = document.querySelector('.delete');
+    const minus = document.querySelector('.minus');
+    const bg_thema = document.querySelectorAll('.bg-thema');
+    const btn_number = document.querySelector('.btn-number');
+    const num_thema = document.querySelectorAll('.num');
+    const zero = document.querySelector('.zero');
+    const clr = document.querySelector('.clear-img');
+    const ac = document.querySelector('.ac')
+    change.addEventListener('click', () => {
+
+
+      const switches = document.querySelector('.toogle-switch');
+      switches.classList.toggle('toogle-switch-thema')
+      cal.classList.toggle('calculator-thema');
+      ekran.classList.toggle('calculator-thema');
+      cal_result.classList.toggle('cal-result-thema')
+      operators.forEach(operators => operators.classList.toggle('operator-thema'));
+      butons.forEach(butons => butons.classList.toggle('btn-thema'));
+      equal.classList.toggle('equal-thema');
+      dlt.classList.toggle('delete-thema');
+      minus.classList.toggle('minus-thema');
+      num_thema.forEach(num_thema => num_thema.classList.toggle('button-thema'));
+      bg_thema.forEach(bg_thema => bg_thema.classList.toggle('bg-themaa'));
+      zero.classList.toggle('zero-thema');
+      clr.classList.toggle('clear-img-thema');
+      ac.classList.toggle('ac-thema');
+      loading.style.display = 'block';
+      setTimeout(() => {
+        loading.style.display = 'none'
+        main.style.display = 'block'
+      }, 2000);
+
+
+    })
+
+
+
+    //hesap makinesi//
+
+
+
+    let displayVal = '0';
+    let firstValue = null;
+    let operator = null;
+    let waitingforSecondValue = false;
+
+    updateDisplay();
+    function updateDisplay() {
+      ekran.value = displayVal;
+      ekran.value = displayVal.slice(0, 12);
+    }
+
+    calculator.addEventListener('click', function (e) {
+      let element = e.target;
+      if (element.matches('.cal-body')) return;
+      if (element.classList.contains('operator')) {
+        console.log('operator', element.value);
+        handleOperator(element.value);
+        updateDisplay()
+        return;
+      };
+      if (element.classList.contains('clear')) {
+        console.log('clear', element.value);
+        clear();
+        updateDisplay()
+        return;
+      }
+      if (element.classList.contains('point')) {
+        console.log('point', element.value);
+        point();
+        updateDisplay()
+        return;
+      }
+      if (element.id === 'backspace') {
+        console.log('backspace');
+        backspace();
+        updateDisplay();
+        return;
+      }
+      console.log(element.value);
+      valueDisplay(element.value);
+      updateDisplay()
+    });
+    function backspace() {
+      displayVal = displayVal.slice(0, -1);
+      if (displayVal === '') {
+        displayVal = '0';
+      }
+    }
+    function valueDisplay(num) {
+      if (waitingforSecondValue) {
+        displayVal = num;
+        waitingforSecondValue = false;
+      } else {
+        if (displayVal === '0') {
+          displayVal = num;
+        } else if (operator !== null) {
+          displayVal += num;
+        } else {
+          displayVal += num;
+        }
+      }
+    }
+    function clear() {
+      displayVal = '0';
+      firstValue = null;
+      operator = null;
+      waitingforSecondValue = false;
+    }
+    function point() {
+      if (!displayVal.includes('.')) {
+        displayVal += '.'
+      }
+    }
+
+    function handleOperator(nextoperator) {
+      const value = parseFloat(displayVal);
+
+      let operatorText = '';
+      if (nextoperator === '+') {
+        operatorText = ' + ';
+      } else if (nextoperator === '-') {
+        operatorText = ' - ';
+      } else if (nextoperator === '*') {
+        operatorText = ' × ';
+      } else if (nextoperator === '/') {
+        operatorText = ' ÷ ';
+      }
+
+      if (operator && waitingforSecondValue) {
+        operator = nextoperator;
+        return;
+      }
+      if (firstValue === null) {
+        firstValue = value;
+      } else if (operator) {
+        const result = calculate(firstValue, value, operator);
+
+        displayVal = String(result);
+        firstValue = result;
+      }
+      waitingforSecondValue = true;
+      operator = nextoperator;
+      displayVal += operatorText;
+    }
+
+    function calculate(first, second, operator) {
+      if (operator === '+') {
+        return first + second;
+      } else if (operator === '-') {
+        return first - second;
+      } else if (operator === '*') {
+        return first * second;
+      } else if (operator === '/') {
+        return first / second;
+      }
+      return second;
+    }
