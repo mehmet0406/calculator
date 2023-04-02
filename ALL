@@ -1,0 +1,488 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>Calculator</title>
+    <style>
+   *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+   }
+
+   .main{
+  
+    width: 100%;
+ height: 100%;
+    font-size: 16px;
+    background: linear-gradient(to right,
+    #ff5900,
+    #fdf001,
+    #155a95,
+    #092044
+       ); 
+      background-size: 400% 400%;
+         position: absolute;
+  
+       
+        
+   }
+  .main-background-1{
+       background: linear-gradient(to right,
+       #004e92,
+       #000428,
+       rgba(255, 60 , 0),
+       rgba(253, 195 , 0)
+     
+       ); 
+       background-size: 400% 400%;
+       animation: animated 3s ease 1 forwards;
+  }
+   .main-background-2{
+     animation: animate 3s ease 1 forwards;
+   }
+   @keyframes animate {
+    0%{
+      background-position: 0 50%;
+    }
+   
+    50%{
+     
+      background-position: 100% 25%;
+    }
+   75%{
+    background-position: 100% 50%;
+   }
+    100%{
+      background-position: 100% 75%;
+     
+    }
+    
+   }
+   @keyframes animated {
+    0%{
+      background-position: 50% 50%;
+    }
+   
+    50%{
+     
+      background-position: 100% 25%;
+    }
+   75%{
+    background-position: 100% 50%;
+   }
+    100%{
+      background-position: 100% 75%;
+     
+    }
+    
+   }
+ .cal-center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+ }
+   .toogle-switch {
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    position: absolute;
+    bottom: 615px;
+    
+    }
+    .calculator {
+
+     
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  max-width: 350px;
+  
+      
+    }
+    .calculator-body{
+      border-radius: 2.2rem;
+     transition: 1.5s;
+     background: #EBECF1;
+
+    }
+  
+    .cal-result {
+      width: 100%;
+      padding:2.2rem 1.5rem 2.5rem 1.5rem;
+    }
+    .input-value {
+      padding:2.5rem 1.25rem 2.5rem 1.25rem;
+     width: 100%;
+      border: none;
+      background-color: #EBECF1;
+      border-radius:2.2rem 2.2rem 0.75rem 0.75rem;
+      box-shadow: inset 2px 2px 4px #CBCBCB,
+                inset -2px -2px 4px #FFFFFF;
+      text-align: right;
+      display: flex;
+      font-size: 25px;
+      color: black;
+      transition: 1.5s;
+     
+    }
+   
+    button {
+      padding: 0;
+      border: none;
+      height:60px;
+      width: 60px;
+      background: #ecebeb;
+      box-shadow: 4.5px 4.5px 9px #CBCBCB,
+                -4.5px -4.5px 9px #FFFFFF;
+      font-size: 25px;
+      cursor: pointer;
+      transition: 1.5s;
+    }
+  button:hover{
+    background:#cac8c8 ;
+    transition: all .7s;
+  }
+    .buttons{
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 20px;
+      padding: 20px;
+      transition: 1.5s;
+    
+    }
+    .plus {
+      grid-area: 3/4/2/4
+    }
+    .point {
+      grid-area: 5/4/5/3;
+      font-size: 2rem;
+      
+    }
+    .zero {
+      grid-area: 5/3/5/1;
+      border-radius: 35px ;
+      color: #f5af19 ;
+      width: 100%;
+     
+    }
+    .equal {
+      grid-area: 3/4/6/5;
+      height: 100%;
+      border-radius: 35px;
+      color: rgb(43, 172, 43) ;
+    }
+    .color {
+      color: #4091C6;
+    }
+    .num,
+    .same {
+     
+      border-radius: 50%;
+    }
+    /*toggle btn */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      margin-bottom: 20px;
+      top: 30%;
+    }
+    .switch input {
+      display: none;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .7s;
+      transition: .7s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .7s;
+      transition: .7s;
+      border-radius: 50%;
+    }
+    input:checked+.slider {
+      background-color: #4091C6 ; 
+    }
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+      background-color: rgb(48, 48, 48);
+    }
+    .slider.round {
+      border-radius: 34px;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+/*dark mod */
+.dark{
+  background-color: #282828;
+
+}
+
+.dark button{
+  background: #282828;
+  box-shadow: 6px 6px 12px #0E0E0E, 
+              -4px -4px 10px rgba(95, 94, 94, 0.25);
+        color: #ecebeb;
+       
+}
+.dark button:hover{
+  background: #575454;
+  transition: all .3s;
+}
+.dark .input-value{
+  background-color: #292929;
+      color: yellow;
+      box-shadow: inset 1.5px 1.5px 3px #0E0E0E, inset -1.5px -1.5px 3px #5F5E5E;
+        
+}
+.dark .color {
+      color: #4091C6;
+    }
+.dark .equal{
+  color: rgb(43, 172, 43) ;
+}
+.dark .zero{
+  color: #f5af19 ;
+}
+
+    </style>
+</head>
+<body>
+
+  
+      <div class="main "> 
+       <div class="calculator ">
+       
+        <div class="toogle-switch">
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+     
+   <div class="calculator-body">
+               
+     
+          <div class="cal-result">
+            <input type="text" class="input-value" value="0" disabled="">
+          </div>
+          
+         
+            <div class="buttons">
+            <button type="button" class="btn same clear " value="clear"><svg class="clear svg" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="#eb3b5a"><path class="clear" d="M17.573 1.848c.083.699-.476 1.152-1.182 1.152h-8.774c-.704 0-1.266-.452-1.182-1.156-1.329.281-4.435 1.159-4.435 2.516 0 .303.103.7.235 1.361 3.175 2.953 15.758 3.088 19.476.244.159-.824.289-1.278.289-1.611 0-1.333-3.091-2.223-4.427-2.506zm3.113 6.897c-.868 4.587-2.184 10.54-2.709 13.287-1.079 1.312-3.545 1.968-6.013 1.968s-4.935-.656-6.013-1.968c-.529-2.884-1.834-8.868-2.684-13.414 3.154 1.274 7.398 1.401 8.895 1.401 1.771 0 5.561-.151 8.524-1.274zm-13.069-6.763c.922 0 1.669-1.08 1.669-1.982h5.437c0 .902.747 1.982 1.668 1.982h-8.774z"></path></svg>
+              
+            </button><button type="button" class="btn operator same color " value="/">/</button>
+            <button type="button" class="btn  operator same color o" value="*">X</button>
+            <button type="button" class="btn operator same color minus" value="-">-</button>
+            <button type="button" class="btn operator same plus color " value="+">+</button>
+            <button type="button" class="btn same decimal  point " value=".">.</button>
+            <button type="button" class="btn operator equal " value="=">=</button>
+    
+            <button type="button" class="btn num same " value="7">7</button>
+            <button type="button" class="btn num same " value="8">8</button>
+            <button type="button" class="btn num same " value="9">9</button>
+    
+            <button type="button" class="btn num same " value="4">4</button>
+            <button type="button" class="btn num same " value="5">5</button>
+            <button type="button" class="btn num same " value="6">6</button>
+    
+            <button type="button" class="btn num same " value="1">1</button>
+            <button type="button" class="btn num same " value="2">2</button>
+            <button type="button" class="btn num same " value="3">3</button>
+            <button type="button" class="btn   zero " value="0">0</button>
+           
+          </div>
+        </div>
+         
+       </div>
+        
+      </div>
+      <script>
+        window.onload = function (){
+          
+        }
+         // DARK MOD // 
+const cal = document.querySelector('.calculator-body')
+const calculator = document.querySelector('.calculator')
+const switches = document.querySelector('.slider')
+const main = document.querySelector('.main')
+var click = 0;
+switches.addEventListener('click', ()=>{
+cal.classList.toggle('dark')
+click++;
+if(click %2 == 0 ){
+main.classList.remove('main-background-2')
+main.classList.add('main-background-1')
+
+}else{
+  main.classList.add('main-background-2')
+  main.classList.remove('main-background-1')
+
+
+}
+})
+
+
+
+    //Calculator//
+
+const input_val = document.querySelector('.input-value')
+
+    let displayVal = '0'; 
+    let firstValue = null;
+    let operator = null;
+    let waitingforSecondValue = false;
+   
+    updateDisplay();
+    function updateDisplay() {
+      input_val.value = displayVal;
+      input_val.value = displayVal.slice(0, 15);
+    }
+
+    cal.addEventListener('click', function (e) {
+      let element = e.target;
+      if (element.matches('.buttons')) return;
+      if (element.matches('.input-value')) return ;
+      if (element.matches('.cal-result')) return ;
+   
+      if (element.classList.contains('operator')) {
+        console.log('operator', element.value);
+        handleOperator(element.value);
+        updateDisplay()
+   
+        return;
+      };
+      if (element.classList.contains('clear')) {
+        console.log('clear', element.value);
+        clear();
+        updateDisplay()
+  
+        return;
+      }
+  
+      if (element.classList.contains('point')) {
+        console.log('point', element.value);
+        point();
+        updateDisplay()
+     
+        return;
+      }
+   
+      console.log(element.value);
+      valueDisplay(element.value);
+      updateDisplay()
+    });
+ 
+    function valueDisplay(num) {
+  if (waitingforSecondValue) {
+    if (!displayVal) {
+      displayVal = '0.';
+    } else {
+      displayVal = num;
+    }
+    waitingforSecondValue = false;
+  } else {
+    if (displayVal === '0') {
+      displayVal = num;
+    } else if (operator !== null) {
+      displayVal += num;
+    } else {
+      displayVal += num;
+    }
+  }
+}
+
+
+
+    function clear() {
+      displayVal = '0';
+      firstValue = null;
+      operator = null;
+      waitingforSecondValue = false;
+    }
+    function point() {
+  if (waitingforSecondValue || !displayVal.includes('.')) {
+    displayVal = '0.';
+    waitingforSecondValue = false;
+  } else if (!displayVal.includes('.')) {
+    displayVal += '.';
+  }
+}
+
+
+function handleOperator(nextoperator) {
+  const value = parseFloat(displayVal);
+
+  let operatorText = '';
+  if (nextoperator === '+') {
+    operatorText = ' + ';
+  } else if (nextoperator === '-') {
+    operatorText = ' - ';
+  } else if (nextoperator === '*') {
+    operatorText = ' * ';
+  } else if (nextoperator === '/') {
+    operatorText = ' ÷ ';
+  }
+
+  if (operator && waitingforSecondValue) {
+    operator = nextoperator;
+    return;
+  }
+  if (firstValue === null) {
+    firstValue = value;
+  } else if (operator) {
+    const result = calculate(firstValue, value, operator);
+
+    displayVal = String(result);
+    firstValue = result;
+  }
+  waitingforSecondValue = true;
+  operator = nextoperator;
+
+  if (operator === '.' && !displayVal) {
+    displayVal = '0.';
+  }
+}
+
+
+    function calculate(first, second, operator) {
+      if (operator === '+') {
+        return first + second;
+      } else if (operator === '-') {
+        return first - second;
+      } else if (operator === '*') {
+        return first * second;
+      } else if (operator === '/') {
+        return first / second;
+      }
+      return second;
+    }
+      </script>
+
+</body></html>
