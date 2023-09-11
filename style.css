@@ -1,0 +1,267 @@
+
+*{
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+
+}
+
+.main{
+
+ width: 100%;
+height: 100%;
+ font-size: 16px;
+ background: linear-gradient(to right,
+ #ff5900,
+ #fdf001,
+ #155a95,
+ #092044
+    ); 
+   background-size: 400% 400%;
+      position: absolute;
+
+    
+     
+}
+.main-background-1{
+    background: linear-gradient(to right,
+    #004e92,
+    #000428,
+    rgba(255, 60 , 0),
+    rgba(253, 195 , 0)
+  
+    ); 
+    background-size: 400% 400%;
+    animation: animated 3s ease 1 forwards;
+}
+.main-background-2{
+  animation: animate 3s ease 1 forwards;
+}
+@keyframes animate {
+ 0%{
+   background-position: 0 50%;
+ }
+
+ 50%{
+  
+   background-position: 100% 25%;
+ }
+75%{
+ background-position: 100% 50%;
+}
+ 100%{
+   background-position: 100% 75%;
+  
+ }
+ 
+}
+@keyframes animated {
+ 0%{
+   background-position: 50% 50%;
+ }
+
+ 50%{
+  
+   background-position: 100% 25%;
+ }
+75%{
+ background-position: 100% 50%;
+}
+ 100%{
+   background-position: 100% 75%;
+  
+ }
+ 
+}
+.cal-center{
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+
+}
+.toogle-switch {
+ display: flex;
+ justify-content: center;
+ left: 50%;
+ transform: translate(-50%, 0px);
+ position: absolute;
+ bottom: 615px;
+ 
+ }
+ .calculator {
+
+  
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+max-width: 350px;
+
+   
+ }
+ .calculator-body{
+   border-radius: 2.2rem;
+  transition: 1.5s;
+  background: #EBECF1;
+
+ }
+
+ .cal-result {
+   width: 100%;
+   padding:2.2rem 1.5rem 2.5rem 1.5rem;
+ }
+ .input-value {
+   padding:2.5rem 1.25rem 2.5rem 1.25rem;
+  width: 100%;
+   border: none;
+   background-color: #EBECF1;
+   border-radius:2.2rem 2.2rem 0.75rem 0.75rem;
+   box-shadow: inset 2px 2px 4px #CBCBCB,
+             inset -2px -2px 4px #FFFFFF;
+   text-align: right;
+   display: flex;
+   font-size: 25px;
+   color: black;
+   transition: 1.5s;
+  
+ }
+
+ button {
+   padding: 0;
+   border: none;
+   height:60px;
+   width: 60px;
+   background: #ecebeb;
+   box-shadow: 4.5px 4.5px 9px #CBCBCB,
+             -4.5px -4.5px 9px #FFFFFF;
+   font-size: 25px;
+   cursor: pointer;
+   transition: 1.5s;
+ }
+button:hover{
+ background:#cac8c8 ;
+ transition: all .7s;
+}
+ .buttons{
+   display: grid;
+   grid-template-columns: repeat(4, auto);
+   gap: 20px;
+   padding: 20px;
+   transition: 1.5s;
+ 
+ }
+ .plus {
+   grid-area: 3/4/2/4
+ }
+ .point {
+   grid-area: 5/4/5/3;
+   font-size: 2rem;
+   
+ }
+ .zero {
+   grid-area: 5/3/5/1;
+   border-radius: 35px ;
+   color: #f5af19 ;
+   width: 100%;
+  
+ }
+ .equal {
+   grid-area: 3/4/6/5;
+   height: 100%;
+   border-radius: 35px;
+   color: rgb(43, 172, 43) ;
+ }
+ .color {
+   color: #4091C6;
+ }
+ .num,
+ .same {
+  
+   border-radius: 50%;
+ }
+ /*toggle btn */
+ .switch {
+   position: relative;
+   display: inline-block;
+   width: 60px;
+   height: 34px;
+   margin-bottom: 20px;
+   top: 30%;
+ }
+ .switch input {
+   display: none;
+ }
+ .slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   -webkit-transition: .7s;
+   transition: .7s;
+   border-radius: 34px;
+ }
+ .slider:before {
+   position: absolute;
+   content: "";
+   height: 26px;
+   width: 26px;
+   left: 4px;
+   bottom: 4px;
+   background-color: white;
+   -webkit-transition: .7s;
+   transition: .7s;
+   border-radius: 50%;
+ }
+ input:checked+.slider {
+   background-color: #4091C6 ; 
+ }
+ input:checked+.slider:before {
+   -webkit-transform: translateX(26px);
+   -ms-transform: translateX(26px);
+   transform: translateX(26px);
+   background-color: rgb(48, 48, 48);
+ }
+ .slider.round {
+   border-radius: 34px;
+ }
+ .slider.round:before {
+   border-radius: 50%;
+ }
+
+/*dark mod */
+.dark{
+background-color: #282828;
+
+}
+
+.dark button{
+background: #282828;
+box-shadow: 6px 6px 12px #0E0E0E, 
+           -4px -4px 10px rgba(95, 94, 94, 0.25);
+     color: #ecebeb;
+    
+}
+.dark button:hover{
+background: #575454;
+transition: all .3s;
+}
+.dark .input-value{
+background-color: #292929;
+   color: yellow;
+   box-shadow: inset 1.5px 1.5px 3px #0E0E0E, inset -1.5px -1.5px 3px #5F5E5E;
+     
+}
+.dark .color {
+   color: #4091C6;
+ }
+.dark .equal{
+color: rgb(43, 172, 43) ;
+}
+.dark .zero{
+color: #f5af19 ;
+}
+
